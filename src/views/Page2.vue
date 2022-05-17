@@ -1,5 +1,31 @@
 <template>
-  <div class="about">
-    <h1>page2</h1>
+  <div>
+    <input type="text" v-model="newTodo">
+    <button @click="onClicked">add</button>
+    <ul>
+      <li v-for="(hoge,index) in todos" :key="index">{{index}}___{{hoge}}</li>
+    </ul>
+    <pre>{{$data}}</pre>
   </div>
 </template>
+
+<script>
+export default {
+  data(){
+    return{
+      newTodo:'',
+      todos:['A','B','C']
+    }
+  },
+  methods:{
+    onClicked(){
+      this.todos.push(this.newTodo)
+    }
+  }
+
+}
+</script>
+
+<style>
+
+</style>
