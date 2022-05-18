@@ -1,53 +1,26 @@
 <template>
   <div>
-    <input type="text" v-model="newTodo">
-    <button @click="onClicked">add</button>
-    <ul>
-      <li v-for="(hoge,index) in todos" :key="index">
-        <input type="checkbox" v-model="hoge.isDone">
-        <span :class="{done:hoge.isDone}">{{hoge.name}}</span>
-      </li>
-    </ul>
-    <pre>{{$data}}</pre>
+    <button @click="loading = !loading">load</button>
+     <vue-loading v-if="loading" type="spin" color="#333" :size="{ width: '50px', height: '50px'}"></vue-loading>
   </div>
 </template>
 
 <script>
+import { VueLoading } from 'vue-loading-template';
 export default {
+
+
+components: {
+    VueLoading
+  },
   data(){
     return{
-      newTodo:'',
-      todos:[]
+      loading:false,
     }
-  },
-  methods:{
-      onClicked(){
-        const newItem = {
-          name:this.newTodo,
-          isDone:false
-        }
-        this.todos.push(newItem)
-      }
   }
-
 }
 </script>
-<style scoped>
-.done {
-    opacity: 0.5;
-    text-decoration: line-through;
-}
-li {
-    list-style: none;
-    margin-bottom: 10px;
-}
-span,
-input,
-button {
-    margin-right: 5px;
-}
-hr {
-    margin: 20px 0;
-}
+
+<style>
+
 </style>
-                
